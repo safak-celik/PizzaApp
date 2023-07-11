@@ -14,6 +14,7 @@ data class Dimens(
 
 
 data class Spacing(
+    val spacingXS: Dp = 8.dp,
     val spacingS: Dp = 12.dp,
     val spacingM: Dp = 16.dp,
     val spacingL: Dp = 24.dp,
@@ -21,6 +22,7 @@ data class Spacing(
 )
 
 data class CornerSizes(
+    val cornerSizeS: Dp = 8.dp,
     val cornerSizeL: Dp = 24.dp,
 )
 

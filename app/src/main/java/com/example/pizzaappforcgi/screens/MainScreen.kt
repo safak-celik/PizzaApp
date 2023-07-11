@@ -16,14 +16,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.LightGray
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.pizzaappforcgi.R
+import com.example.pizzaappforcgi.components.TopBar
+import com.example.pizzaappforcgi.navigation.PizzaScreens.AddPizzaScreen
+import com.example.pizzaappforcgi.screens.pizza.PizzaScreen
 import com.example.pizzaappforcgi.screens.NavigationBarItems.HOME
 import com.example.pizzaappforcgi.screens.NavigationBarItems.PIZZA
 import com.example.pizzaappforcgi.ui.theme.CgiDimens
@@ -36,23 +42,32 @@ import com.exyte.animatednavbar.utils.noRippleClickable
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(navController: NavController) {
     val navigationBarItems = remember { NavigationBarItems.values() }
-    var selectIndex by remember { mutableStateOf(0) }
-
+    var selectIndex by rememberSaveable{ mutableStateOf(0) }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            TopBar()
+            TopBar(
+                addButtonIsVisibility = selectIndex == 1,
+                title = if (selectIndex == 0) {
+                    stringResource(id = R.string.app_bar_title)
+                } else {
+                    stringResource(id = R.string.app_bar_title_pizza)
+                },
+                onAddButtonClick = {
+                    navigateToAddPizzaScreen(navController)
+                }
+            )
         },
         bottomBar = {
             AnimatedNavigationBar(
                 modifier = Modifier
                     .padding(
-                        bottom = CgiDimens.spacings.spacingM,
+                        bottom = CgiDimens.spacings.spacingS,
                         start = CgiDimens.spacings.spacingM,
-                        end =  CgiDimens.spacings.spacingM
+                        end = CgiDimens.spacings.spacingM
                     )
                     .height(64.dp),
                 selectedIndex = selectIndex,
@@ -105,4 +120,8 @@ enum class NavigationBarItems(val icon: Int) {
     PIZZA(R.drawable.ic_food)
 }
 
-const val Duration = 500
+private fun navigateToAddPizzaScreen(navController: NavController) {
+    navController.navigate(route = AddPizzaScreen.name)
+}
+
+const val Duration = 250

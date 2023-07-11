@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.pizzaappforcgi.screens.MainScreen
+import com.example.pizzaappforcgi.navigation.PizzaNavigation
 import com.example.pizzaappforcgi.ui.theme.PizzaAppForCGITheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -14,16 +13,14 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PizzaAppForCGITheme {
-                MainScreen()
-            }
+            MyApp { PizzaNavigation() }
         }
     }
 }
 
-
-@Preview
 @Composable
-fun MainScreenPreview() {
-    MainScreen()
+fun MyApp(content: @Composable () -> Unit) {
+    PizzaAppForCGITheme {
+        content()
+    }
 }
