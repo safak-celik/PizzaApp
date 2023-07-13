@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.example.pizzaappforcgi.R
-import com.example.pizzaappforcgi.components.PizzaInputText
+import com.example.pizzaappforcgi.components.InputTextField
 import com.example.pizzaappforcgi.components.TopBar
 import com.example.pizzaappforcgi.model.Pizza
 import com.example.pizzaappforcgi.ui.theme.CgiDimens
@@ -51,22 +51,14 @@ fun AddPizzaScreen(
                         ),
                     horizontalAlignment = CenterHorizontally
                 ) {
-                    PizzaInputText(
+                    InputTextField(
                         modifier = Modifier.padding(CgiDimens.spacings.spacingXS),
                         text = title, label = "Pizza",
-                        onTextChange = {
-                            if (it.all { char ->
-                                    char.isLetter() || char.isWhitespace()
-                                }) title = it
-                        })
-                    PizzaInputText(
+                        onTextChange = { title = it })
+                    InputTextField(
                         modifier = Modifier.padding(CgiDimens.spacings.spacingXS),
                         text = description, label = "Description",
-                        onTextChange = {
-                            if (it.all { char ->
-                                    char.isLetter() || char.isWhitespace()
-                                }) description = it
-                        })
+                        onTextChange = { description = it })
                     Button(
                         onClick = {
                             onSaveClick(Pizza(title = title, description = description))

@@ -27,9 +27,7 @@ class ViewModel @Inject constructor(private val repository: PizzaRepository) : V
         }
     }
 
-    fun addPizza(pizza: Pizza) = viewModelScope.launch {
-        repository.addPizza(pizza)
-    }
+    fun addPizza(pizza: Pizza) = viewModelScope.launch { repository.addPizza(pizza) }
 
     fun deletePizza(pizza: Pizza) = viewModelScope.launch { repository.deletePizza(pizza) }
 }

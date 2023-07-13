@@ -15,7 +15,7 @@ import androidx.compose.ui.text.input.ImeAction
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun PizzaInputText(
+fun InputTextField(
     modifier: Modifier = Modifier,
     text: String,
     label: String,
