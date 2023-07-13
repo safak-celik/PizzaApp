@@ -28,5 +28,4 @@ object AppModule {
             name = "pizza_tbl"
         ).fallbackToDestructiveMigration()
             .build()
-
 }

@@ -28,10 +28,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.pizzaappforcgi.R
 import com.example.pizzaappforcgi.components.TopBar
+import com.example.pizzaappforcgi.model.Pizza
 import com.example.pizzaappforcgi.navigation.PizzaScreens.AddPizzaScreen
-import com.example.pizzaappforcgi.screens.pizza.PizzaScreen
-import com.example.pizzaappforcgi.screens.NavigationBarItems.HOME
 import com.example.pizzaappforcgi.screens.NavigationBarItems.PIZZA
+import com.example.pizzaappforcgi.screens.NavigationBarItems.WELCOME
+import com.example.pizzaappforcgi.screens.addPizza.ViewModel
 import com.example.pizzaappforcgi.ui.theme.CgiDimens
 import com.exyte.animatednavbar.AnimatedNavigationBar
 import com.exyte.animatednavbar.animation.balltrajectory.Parabolic
@@ -42,9 +43,10 @@ import com.exyte.animatednavbar.utils.noRippleClickable
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(navController: NavController) {
+fun MainScreen(navController: NavController, pizzas: List<Pizza>, viewModel: ViewModel) {
+
     val navigationBarItems = remember { NavigationBarItems.values() }
-    var selectIndex by rememberSaveable{ mutableStateOf(0) }
+    var selectIndex by rememberSaveable { mutableStateOf(0) }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -106,8 +108,10 @@ fun MainScreen(navController: NavController) {
                     )
             ) {
                 when (navigationBarItems[selectIndex]) {
-                    HOME -> WelcomeScreen()
-                    PIZZA -> PizzaScreen()
+                    WELCOME -> WelcomeScreen()
+                    PIZZA -> PizzaScreen(pizzas = pizzas, onRemoveClicked = {
+                        viewModel.deletePizza(it)
+                    })
                 }
             }
         }
@@ -116,7 +120,7 @@ fun MainScreen(navController: NavController) {
 
 
 enum class NavigationBarItems(val icon: Int) {
-    HOME(R.drawable.ic_home),
+    WELCOME(R.drawable.ic_home),
     PIZZA(R.drawable.ic_food)
 }
 

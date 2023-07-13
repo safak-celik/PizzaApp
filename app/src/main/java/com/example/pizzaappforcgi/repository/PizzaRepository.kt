@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class PizzaRepository @Inject constructor(private val pizzaDatabaseDao: PizzaDatabaseDao) {
-    suspend fun addPizza(pizza: Pizza) = pizzaDatabaseDao.insertPizza(pizza)
+    suspend fun addPizza(pizza: Pizza) = pizzaDatabaseDao.insert(pizza)
 
-    suspend fun deletePizza(pizza: Pizza) = pizzaDatabaseDao.deletePizza(pizza)
+    suspend fun deletePizza(pizza: Pizza) = pizzaDatabaseDao.delete(pizza)
 
     fun getAllPizzas(): Flow<List<Pizza>> =
         pizzaDatabaseDao.getPizzas().flowOn(Dispatchers.IO).conflate()

@@ -1,4 +1,4 @@
-package com.example.pizzaappforcgi.screens
+package com.example.pizzaappforcgi.screens.addPizza
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,11 +20,15 @@ import androidx.navigation.NavController
 import com.example.pizzaappforcgi.R
 import com.example.pizzaappforcgi.components.PizzaInputText
 import com.example.pizzaappforcgi.components.TopBar
+import com.example.pizzaappforcgi.model.Pizza
 import com.example.pizzaappforcgi.ui.theme.CgiDimens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddPizzaScreen(navController: NavController) {
+fun AddPizzaScreen(
+    navController: NavController,
+    onSaveClick: (Pizza) -> Unit
+) {
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
 
@@ -64,7 +68,10 @@ fun AddPizzaScreen(navController: NavController) {
                                 }) description = it
                         })
                     Button(
-                        onClick = { navController.popBackStack() },
+                        onClick = {
+                            onSaveClick(Pizza(title = title, description = description))
+                            navController.popBackStack()
+                        },
                         enabled = title.isNotEmpty() && description.isNotEmpty()
                     ) {
                         Text(text = "Add Pizza")

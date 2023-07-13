@@ -8,7 +8,6 @@ enum class PizzaScreens {
 
     companion object {
         fun fromRoute(route: String?): PizzaScreens = when (route?.substringBefore("/")) {
-            HomeScreen.name -> HomeScreen
             AddPizzaScreen.name -> AddPizzaScreen
             null -> HomeScreen
             else -> throw IllegalArgumentException("Route $route is not recognized")

@@ -28,7 +28,7 @@ import com.example.pizzaappforcgi.ui.theme.CgiDimens
 fun PizzaRow(
     modifier: Modifier = Modifier,
     pizza: Pizza,
-    onPizzaClicked: (Pizza) -> Unit
+    onItemClicked: (Pizza) -> Unit
 ) {
     Surface(
         modifier = modifier
@@ -40,7 +40,7 @@ fun PizzaRow(
     ) {
         Row(
             modifier = Modifier
-                .clickable { onPizzaClicked(pizza) }
+                .clickable { onItemClicked(pizza) }
                 .padding(CgiDimens.spacings.spacingXS),
         ) {
             Image(
