@@ -29,7 +29,7 @@ import androidx.navigation.NavController
 import com.example.pizzaappforcgi.R
 import com.example.pizzaappforcgi.components.TopBar
 import com.example.pizzaappforcgi.model.Pizza
-import com.example.pizzaappforcgi.navigation.PizzaScreens.AddPizzaScreen
+import com.example.pizzaappforcgi.navigation.NavigationScreens
 import com.example.pizzaappforcgi.screens.NavigationBarItems.PIZZA
 import com.example.pizzaappforcgi.screens.NavigationBarItems.WELCOME
 import com.example.pizzaappforcgi.screens.addPizza.ViewModel
@@ -125,7 +125,7 @@ enum class NavigationBarItems(val icon: Int) {
 }
 
 private fun navigateToAddPizzaScreen(navController: NavController) {
-    navController.navigate(route = AddPizzaScreen.name)
+    navController.navigate(route = NavigationScreens.AddPizzaScreen.name)
 }
 
 const val Duration = 250

@@ -5,6 +5,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.pizzaappforcgi.navigation.NavigationScreens.AddPizzaScreen
+import com.example.pizzaappforcgi.navigation.NavigationScreens.HomeScreen
 import com.example.pizzaappforcgi.screens.addPizza.AddPizzaScreen
 import com.example.pizzaappforcgi.screens.MainScreen
 import com.example.pizzaappforcgi.screens.addPizza.ViewModel
@@ -15,14 +17,19 @@ fun PizzaNavigation(viewModel: ViewModel) {
     val navController = rememberNavController()
     val pizzaList = viewModel.pizzaList.collectAsState().value
 
-    NavHost(navController = navController, startDestination = PizzaScreens.HomeScreen.name) {
-        composable(route = PizzaScreens.HomeScreen.name) {
+    NavHost(navController = navController, startDestination = HomeScreen.name) {
+        composable(route = HomeScreen.name) {
             MainScreen(navController = navController, pizzaList, viewModel = viewModel)
         }
-        composable(route = PizzaScreens.AddPizzaScreen.name) {
+        composable(route = AddPizzaScreen.name) {
             AddPizzaScreen(
                 navController = navController,
                 onSaveClick = { viewModel.addPizza(it) })
         }
     }
+}
+
+enum class NavigationScreens {
+    HomeScreen,
+    AddPizzaScreen
 }
