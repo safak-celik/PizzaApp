@@ -3,11 +3,10 @@ package com.example.pizzaappforcgi.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.UUID
 
-@Entity
+@Entity(tableName = "pizza_tbl")
 data class Pizza(
-    @PrimaryKey val id: UUID = UUID.randomUUID(),
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo val title: String,
     @ColumnInfo val description: String
 )
