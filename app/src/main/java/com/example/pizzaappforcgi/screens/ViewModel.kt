@@ -1,6 +1,5 @@
-package com.example.pizzaappforcgi.screens.addPizza
+package com.example.pizzaappforcgi.screens
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pizzaappforcgi.model.Pizza
@@ -21,8 +20,7 @@ class ViewModel @Inject constructor(private val repository: PizzaRepository) : V
     init {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getAllPizzas().distinctUntilChanged().collect { listOfPizza ->
-                if (listOfPizza.isEmpty()) Log.d("Empty", "List of Pizzas is empty")
-                else _pizzaList.value = listOfPizza
+                _pizzaList.value = listOfPizza
             }
         }
     }

@@ -3,6 +3,7 @@
     <string name="app_bar_title">Pizza App for CGI</string>
     <string name="app_bar_title_pizza"> List of Pizzas</string>
     <string name="app_bar_add_pizza_title">Add a Pizza</string>
+    <string name="app_bar_pizza_details_title">Pizza Details</string>
     <string name="welcome_title">Hello CGI</string>
 
 </resources>

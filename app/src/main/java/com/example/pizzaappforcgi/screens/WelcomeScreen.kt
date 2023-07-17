@@ -25,5 +25,4 @@ fun WelcomeScreen() {
             style = TextStyle(fontWeight = Bold, fontSize = 24.sp)
         )
     }
-
 }

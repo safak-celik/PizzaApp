@@ -1,8 +1,10 @@
 package com.example.pizzaappforcgi.components
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,11 +26,14 @@ import com.example.pizzaappforcgi.R
 import com.example.pizzaappforcgi.model.Pizza
 import com.example.pizzaappforcgi.ui.theme.CgiDimens
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PizzaRow(
     modifier: Modifier = Modifier,
     pizza: Pizza,
-    onItemClicked: (Pizza) -> Unit
+    onItemClicked: (Pizza) -> Unit,
+    onItemLongClick: (Pizza) -> Unit,
+    combineClickable: Boolean = true
 ) {
     Surface(
         modifier = modifier
@@ -40,12 +45,16 @@ fun PizzaRow(
     ) {
         Row(
             modifier = Modifier
-                .clickable { onItemClicked(pizza) }
+                .combinedClickable(
+                    enabled = combineClickable,
+                    onClick = { onItemClicked(pizza) },
+                    onLongClick = { onItemLongClick(pizza) }
+                )
                 .padding(CgiDimens.spacings.spacingXS),
         ) {
             Image(
                 modifier = Modifier
-                    .size(84.dp)
+                    .size(CgiDimens.imageSize.imageSizeM)
                     .padding(horizontal = CgiDimens.spacings.spacingM),
                 contentScale = ContentScale.Fit,
                 painter = painterResource(id = R.drawable.pizza), contentDescription = "Image"

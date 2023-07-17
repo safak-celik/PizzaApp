@@ -1,4 +1,4 @@
-package com.example.pizzaappforcgi.screens.addPizza
+package com.example.pizzaappforcgi.screens.pizza
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

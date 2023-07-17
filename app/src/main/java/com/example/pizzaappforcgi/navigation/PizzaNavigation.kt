@@ -7,9 +7,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.pizzaappforcgi.navigation.NavigationScreens.AddPizzaScreen
 import com.example.pizzaappforcgi.navigation.NavigationScreens.HomeScreen
-import com.example.pizzaappforcgi.screens.addPizza.AddPizzaScreen
 import com.example.pizzaappforcgi.screens.MainScreen
-import com.example.pizzaappforcgi.screens.addPizza.ViewModel
+import com.example.pizzaappforcgi.screens.ViewModel
+import com.example.pizzaappforcgi.screens.pizza.AddPizzaScreen
 
 @Composable
 fun PizzaNavigation(viewModel: ViewModel) {
@@ -19,7 +19,11 @@ fun PizzaNavigation(viewModel: ViewModel) {
 
     NavHost(navController = navController, startDestination = HomeScreen.name) {
         composable(route = HomeScreen.name) {
-            MainScreen(navController = navController, pizzaList, viewModel = viewModel)
+            MainScreen(
+                navController = navController,
+                pizzas = pizzaList,
+                viewModel = viewModel
+            )
         }
         composable(route = AddPizzaScreen.name) {
             AddPizzaScreen(
@@ -31,5 +35,6 @@ fun PizzaNavigation(viewModel: ViewModel) {
 
 enum class NavigationScreens {
     HomeScreen,
+    PizzaScreen,
     AddPizzaScreen
 }

@@ -14,6 +14,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -32,7 +33,7 @@ import com.example.pizzaappforcgi.model.Pizza
 import com.example.pizzaappforcgi.navigation.NavigationScreens
 import com.example.pizzaappforcgi.screens.NavigationBarItems.PIZZA
 import com.example.pizzaappforcgi.screens.NavigationBarItems.WELCOME
-import com.example.pizzaappforcgi.screens.addPizza.ViewModel
+import com.example.pizzaappforcgi.screens.pizza.PizzaScreen
 import com.example.pizzaappforcgi.ui.theme.CgiDimens
 import com.exyte.animatednavbar.AnimatedNavigationBar
 import com.exyte.animatednavbar.animation.balltrajectory.Parabolic
@@ -46,7 +47,7 @@ import com.exyte.animatednavbar.utils.noRippleClickable
 fun MainScreen(navController: NavController, pizzas: List<Pizza>, viewModel: ViewModel) {
 
     val navigationBarItems = remember { NavigationBarItems.values() }
-    var selectIndex by rememberSaveable { mutableStateOf(0) }
+    var selectIndex by rememberSaveable { mutableIntStateOf(0) }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -109,9 +110,15 @@ fun MainScreen(navController: NavController, pizzas: List<Pizza>, viewModel: Vie
             ) {
                 when (navigationBarItems[selectIndex]) {
                     WELCOME -> WelcomeScreen()
-                    PIZZA -> PizzaScreen(pizzas = pizzas, onRemoveClicked = {
-                        viewModel.deletePizza(it)
-                    })
+                    PIZZA -> PizzaScreen(
+                        pizzas = pizzas,
+                        onRemoveClick = {
+                            viewModel.deletePizza(it)
+                        },
+                        onDetailsClick = {
+                           // TODO Navigate to DetailsScreen
+                        }
+                    )
                 }
             }
         }
