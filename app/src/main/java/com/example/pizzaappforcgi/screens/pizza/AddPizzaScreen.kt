@@ -58,6 +58,12 @@ fun AddPizzaScreen(
                     ) {
                         Text(text = "Add Pizza")
                     }
+                    Button(modifier = Modifier.padding(CgiDimens.spacings.spacingS),
+                        onClick = {
+                            navController.popBackStack()
+                        }) {
+                        Text(text = "Cancel")
+                    }
                 }
             }
         }

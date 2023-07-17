@@ -44,7 +44,7 @@ fun MainScreen(viewModel: ViewModel) {
         topBar = {
             TopBar(
                 addButtonIsVisibility = currentRoute == PizzaScreen.route,
-                backButtonIsVisibility = currentRoute == AddPizzaScreen.route,
+                backButtonIsVisibility = currentRoute == PizzaDetailsScreen.route + "/{id}",
                 title = when (currentRoute) {
                     WelcomeScreen.route -> stringResource(id = R.string.app_bar_title)
                     PizzaScreen.route -> stringResource(id = R.string.app_bar_title_pizza)
@@ -82,12 +82,11 @@ fun BottomBar(navHostController: NavHostController) {
         WelcomeScreen,
         PizzaScreen
     )
-
     val navBackStackEntry by navHostController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
     NavigationBar(
-        contentColor = colorResource(id = R.color.purple_200)
+        containerColor = colorResource(id = R.color.purple_200)
     ) {
         screens.forEach { screen ->
             AddItem(
