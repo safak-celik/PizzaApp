@@ -1,40 +1,35 @@
 package com.example.pizzaappforcgi.navigation
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.pizzaappforcgi.navigation.NavigationScreens.AddPizzaScreen
-import com.example.pizzaappforcgi.navigation.NavigationScreens.HomeScreen
-import com.example.pizzaappforcgi.screens.MainScreen
-import com.example.pizzaappforcgi.screens.ViewModel
-import com.example.pizzaappforcgi.screens.pizza.AddPizzaScreen
+import androidx.annotation.DrawableRes
+import com.example.pizzaappforcgi.R
 
-@Composable
-fun PizzaNavigation(viewModel: ViewModel) {
 
-    val navController = rememberNavController()
-    val pizzaList = viewModel.pizzaList.collectAsState().value
+sealed class BottomBarScreen(
+    val route: String,
+    val title: String,
+    @DrawableRes val icon: Int
+) {
+    object WelcomeScreen : BottomBarScreen(
+        route = "WelcomeScreen",
+        title = "Welcome",
+        icon = R.drawable.ic_home
+    )
 
-    NavHost(navController = navController, startDestination = HomeScreen.name) {
-        composable(route = HomeScreen.name) {
-            MainScreen(
-                navController = navController,
-                pizzas = pizzaList,
-                viewModel = viewModel
-            )
-        }
-        composable(route = AddPizzaScreen.name) {
-            AddPizzaScreen(
-                navController = navController,
-                onSaveClick = { viewModel.addPizza(it) })
-        }
-    }
+    object PizzaScreen : BottomBarScreen(
+        route = "PizzaScreen",
+        title = "Pizza",
+        icon = R.drawable.ic_food
+    )
 }
 
-enum class NavigationScreens {
-    HomeScreen,
-    PizzaScreen,
-    AddPizzaScreen
+sealed class NavigationScreens(
+    val route: String
+) {
+    object AddPizzaScreen : NavigationScreens(
+        route = "AddPizzaScreen"
+    )
+
+    object PizzaDetailsScreen : NavigationScreens(
+        route = "PizzaDetailsScreen"
+    )
 }

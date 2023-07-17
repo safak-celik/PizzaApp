@@ -12,14 +12,14 @@ import com.example.pizzaappforcgi.ui.theme.CgiDimens
 @Composable
 fun PizzaScreen(
     pizzas: List<Pizza>,
-    onRemoveClick: (Pizza) -> Unit,
-    onDetailsClick: (Pizza) -> Unit,
+    onRemoveClick: (Pizza) -> Unit = {},
+    onDetailsClick: (Int) -> Unit
 ) {
     LazyColumn(Modifier.padding(CgiDimens.spacings.spacingXS)) {
         items(items = pizzas) { pizza ->
             PizzaRow(
                 pizza = pizza,
-                onItemClicked = { onDetailsClick(it) },
+                onItemClicked = { onDetailsClick(pizza.id) },
                 onItemLongClick = { onRemoveClick(it) })
         }
     }
