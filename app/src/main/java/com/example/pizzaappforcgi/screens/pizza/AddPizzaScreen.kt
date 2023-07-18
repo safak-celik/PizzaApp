@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.pizzaappforcgi.components.InputTextField
 import com.example.pizzaappforcgi.model.Pizza
-import com.example.pizzaappforcgi.screens.PizzaUiIntent
 import com.example.pizzaappforcgi.screens.PizzaUiIntent.AddPizza
 import com.example.pizzaappforcgi.screens.ViewModel
 import com.example.pizzaappforcgi.ui.theme.CgiDimens

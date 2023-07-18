@@ -21,7 +21,7 @@ import com.example.pizzaappforcgi.ui.theme.CgiDimens
 
 @Composable
 fun PizzaDetailsScreen(id: Int, viewModel: ViewModel) {
-    val pizza = viewModel.pizzaList.collectAsState().value.first() { pizza -> pizza.id == id }
+    val pizza = viewModel.pizzaList.collectAsState().value.first { pizza -> pizza.id == id }
 
     Column(
         Modifier
