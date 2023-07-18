@@ -1,7 +1,6 @@
 package com.example.pizzaappforcgi.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -18,7 +17,6 @@ import com.example.pizzaappforcgi.screens.pizza.PizzaScreen
 
 @Composable
 fun BottomNavGraph(navController: NavHostController, viewModel: ViewModel) {
-    val pizzaList = viewModel.pizzaList.collectAsState().value
 
     NavHost(navController = navController, startDestination = WelcomeScreen.route) {
         composable(route = WelcomeScreen.route) {
@@ -26,7 +24,6 @@ fun BottomNavGraph(navController: NavHostController, viewModel: ViewModel) {
         }
         composable(route = PizzaScreen.route) {
             PizzaScreen(
-                pizzas = pizzaList,
                 viewModel = viewModel,
                 onDetailsClick = { navController.navigate(PizzaDetailsScreen.route + "/$it") }
             )
