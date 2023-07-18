@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment.Companion.Start
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -27,7 +27,7 @@ fun PizzaDetailsScreen(id: Int, viewModel: ViewModel) {
         Modifier
             .fillMaxSize()
             .padding(CgiDimens.spacings.spacingS),
-        horizontalAlignment = Alignment.Start
+        horizontalAlignment = Start
     ) {
         Image(
             modifier = Modifier
