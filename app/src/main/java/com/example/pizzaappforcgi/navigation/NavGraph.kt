@@ -27,26 +27,18 @@ fun BottomNavGraph(navController: NavHostController, viewModel: ViewModel) {
         composable(route = PizzaScreen.route) {
             PizzaScreen(
                 pizzas = pizzaList,
-                onRemoveClick = {
-                    viewModel.deletePizza(it)
-                },
-                onDetailsClick = {
-                    navController.navigate(
-                        PizzaDetailsScreen.route + "/$it"
-                    )
-                }
+                viewModel = viewModel,
+                onDetailsClick = { navController.navigate(PizzaDetailsScreen.route + "/$it") }
             )
         }
 
         composable(route = NavigationScreens.AddPizzaScreen.route) {
-            AddPizzaScreen(
-                navController = navController,
-                onSaveClick = { viewModel.addPizza(it) })
+            AddPizzaScreen(navController = navController, viewModel = viewModel)
         }
-        composable(route = PizzaDetailsScreen.route + "/{id}",
-            arguments = listOf(
-                navArgument("id") { type = NavType.IntType }
-            )) {
+        composable(
+            route = PizzaDetailsScreen.route + "/{id}",
+            arguments = listOf(navArgument("id") { type = NavType.IntType })
+        ) {
             val param = it.arguments?.getInt("id") ?: 0
             PizzaDetailsScreen(id = param, viewModel = viewModel)
         }

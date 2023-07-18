@@ -34,7 +34,10 @@ import com.example.pizzaappforcgi.navigation.NavigationScreens.PizzaDetailsScree
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(viewModel: ViewModel) {
+fun MainScreen(
+    state: PizzaUiState = PizzaUiState(),
+    viewModel: ViewModel
+) {
     val navController = rememberNavController()
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = currentBackStackEntry?.destination?.route
@@ -43,8 +46,8 @@ fun MainScreen(viewModel: ViewModel) {
         modifier = Modifier.fillMaxSize(),
         topBar = {
             TopBar(
-                addButtonIsVisibility = currentRoute == PizzaScreen.route,
-                backButtonIsVisibility = currentRoute == PizzaDetailsScreen.route + "/{id}",
+                addButtonIsVisibility = currentRoute == state.addButtonVisibility,
+                backButtonIsVisibility = currentRoute == state.backButtonVisibility,
                 title = when (currentRoute) {
                     WelcomeScreen.route -> stringResource(id = R.string.app_bar_title)
                     PizzaScreen.route -> stringResource(id = R.string.app_bar_title_pizza)
@@ -52,15 +55,11 @@ fun MainScreen(viewModel: ViewModel) {
                     PizzaDetailsScreen.route -> stringResource(id = R.string.app_bar_pizza_details_title)
                     else -> stringResource(id = R.string.app_bar_title)
                 },
-                onAddButtonClick = {
-                    navController.navigate(AddPizzaScreen.route)
-                },
+                onAddButtonClick = { navController.navigate(AddPizzaScreen.route) },
                 onBackButtonClick = { navController.popBackStack() }
             )
         },
-        bottomBar = {
-            BottomBar(navHostController = navController)
-        })
+        bottomBar = { BottomBar(navHostController = navController) })
     { paddings ->
         Column(
             Modifier
@@ -72,7 +71,6 @@ fun MainScreen(viewModel: ViewModel) {
         ) {
             BottomNavGraph(navController = navController, viewModel = viewModel)
         }
-
     }
 }
 
@@ -102,14 +100,23 @@ fun BottomBar(navHostController: NavHostController) {
 fun RowScope.AddItem(
     screen: BottomBarScreen,
     currentDestination: NavDestination?,
-    navHostController: NavHostController
+    navHostController: NavHostController,
 ) {
+    val currentBackStackEntry by navHostController.currentBackStackEntryAsState()
+    val currentRoute = currentBackStackEntry?.destination?.route
+
     NavigationBarItem(
         label = { Text(text = screen.title) },
         icon = { Icon(painter = painterResource(id = screen.icon), contentDescription = "Icon") },
-        selected = currentDestination?.hierarchy?.any {
-            it.route == screen.route
-        } == true,
-        onClick = { navHostController.navigate(screen.route) },
+        selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+        onClick = {
+            navHostController.navigate(screen.route) {
+                if (currentRoute == PizzaScreen.route) {
+                    popUpTo(navHostController.graph.id) {
+                        inclusive = true
+                    }
+                }
+            }
+        }
     )
 }

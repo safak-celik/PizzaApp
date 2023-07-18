@@ -22,18 +22,17 @@ import com.example.pizzaappforcgi.ui.theme.CgiDimens
 fun TopBar(
     addButtonIsVisibility: Boolean = false,
     backButtonIsVisibility: Boolean = false,
-    onAddButtonClick: () -> Unit = {},
-    onBackButtonClick: () -> Unit = {},
+    onAddButtonClick: () -> Unit ,
+    onBackButtonClick: () -> Unit,
     title: String
 ) {
     TopAppBar(
-        title = {
-            Text(text = title)
-        },
+        title = { Text(text = title) },
         navigationIcon = {
             if (backButtonIsVisibility) {
                 Icon(
-                    modifier = Modifier.padding(horizontal = CgiDimens.spacings.spacingXS)
+                    modifier = Modifier
+                        .padding(horizontal = CgiDimens.spacings.spacingXS)
                         .clickable { onBackButtonClick() },
                     imageVector = Icons.Default.ArrowBack, contentDescription = "Back Button",
                     tint = White

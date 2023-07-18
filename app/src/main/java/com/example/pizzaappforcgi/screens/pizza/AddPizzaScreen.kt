@@ -18,13 +18,16 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.pizzaappforcgi.components.InputTextField
 import com.example.pizzaappforcgi.model.Pizza
+import com.example.pizzaappforcgi.screens.PizzaUiIntent
+import com.example.pizzaappforcgi.screens.PizzaUiIntent.AddPizza
+import com.example.pizzaappforcgi.screens.ViewModel
 import com.example.pizzaappforcgi.ui.theme.CgiDimens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddPizzaScreen(
     navController: NavController,
-    onSaveClick: (Pizza) -> Unit
+    viewModel: ViewModel
 ) {
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
@@ -51,7 +54,9 @@ fun AddPizzaScreen(
                         onTextChange = { description = it })
                     Button(
                         onClick = {
-                            onSaveClick(Pizza(title = title, description = description))
+                            viewModel.sendIntent(
+                                AddPizza(Pizza(title = title, description = description))
+                            )
                             navController.popBackStack()
                         },
                         enabled = title.isNotEmpty() && description.isNotEmpty()

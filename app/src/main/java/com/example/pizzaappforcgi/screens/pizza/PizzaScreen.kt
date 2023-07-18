@@ -7,12 +7,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.pizzaappforcgi.components.PizzaRow
 import com.example.pizzaappforcgi.model.Pizza
+import com.example.pizzaappforcgi.screens.PizzaUiIntent.DeletePizza
+import com.example.pizzaappforcgi.screens.ViewModel
 import com.example.pizzaappforcgi.ui.theme.CgiDimens
 
 @Composable
 fun PizzaScreen(
     pizzas: List<Pizza>,
-    onRemoveClick: (Pizza) -> Unit = {},
+    viewModel: ViewModel,
     onDetailsClick: (Int) -> Unit
 ) {
     LazyColumn(Modifier.padding(CgiDimens.spacings.spacingXS)) {
@@ -20,7 +22,7 @@ fun PizzaScreen(
             PizzaRow(
                 pizza = pizza,
                 onItemClicked = { onDetailsClick(pizza.id) },
-                onItemLongClick = { onRemoveClick(it) })
+                onItemLongClick = { viewModel.sendIntent(DeletePizza(it)) })
         }
     }
 }
