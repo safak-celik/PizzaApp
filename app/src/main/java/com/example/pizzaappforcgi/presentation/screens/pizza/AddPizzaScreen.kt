@@ -1,4 +1,4 @@
-package com.example.pizzaappforcgi.screens.pizza
+package com.example.pizzaappforcgi.presentation.screens.pizza
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,8 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.pizzaappforcgi.components.InputTextField
 import com.example.pizzaappforcgi.model.Pizza
-import com.example.pizzaappforcgi.screens.PizzaUiIntent.AddPizza
-import com.example.pizzaappforcgi.screens.ViewModel
+import com.example.pizzaappforcgi.presentation.screens.PizzaUiIntent.AddPizza
+import com.example.pizzaappforcgi.presentation.screens.ViewModel
 import com.example.pizzaappforcgi.ui.theme.CgiDimens
 
 @OptIn(ExperimentalMaterial3Api::class)

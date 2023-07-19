@@ -1,11 +1,11 @@
-package com.example.pizzaappforcgi.screens
+package com.example.pizzaappforcgi.presentation.screens
 
 import androidx.lifecycle.viewModelScope
 import com.example.pizzaappforcgi.base.MviViewModel
 import com.example.pizzaappforcgi.model.Pizza
+import com.example.pizzaappforcgi.presentation.screens.PizzaUiIntent.AddPizza
+import com.example.pizzaappforcgi.presentation.screens.PizzaUiIntent.DeletePizza
 import com.example.pizzaappforcgi.repository.PizzaRepository
-import com.example.pizzaappforcgi.screens.PizzaUiIntent.AddPizza
-import com.example.pizzaappforcgi.screens.PizzaUiIntent.DeletePizza
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

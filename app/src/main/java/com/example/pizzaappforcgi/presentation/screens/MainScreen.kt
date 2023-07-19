@@ -1,4 +1,4 @@
-package com.example.pizzaappforcgi.screens
+package com.example.pizzaappforcgi.presentation.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column

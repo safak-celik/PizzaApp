@@ -1,4 +1,4 @@
-package com.example.pizzaappforcgi.screens.pizza
+package com.example.pizzaappforcgi.presentation.screens.pizza
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -16,7 +16,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.sp
 import com.example.pizzaappforcgi.R
-import com.example.pizzaappforcgi.screens.ViewModel
+import com.example.pizzaappforcgi.presentation.screens.ViewModel
 import com.example.pizzaappforcgi.ui.theme.CgiDimens
 
 @Composable

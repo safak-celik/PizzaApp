@@ -1,4 +1,4 @@
-package com.example.pizzaappforcgi.screens
+package com.example.pizzaappforcgi.presentation.screens
 
 import androidx.compose.foundation.layout.Arrangement.Center
 import androidx.compose.foundation.layout.Column

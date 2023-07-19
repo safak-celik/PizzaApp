@@ -9,11 +9,11 @@ import androidx.navigation.navArgument
 import com.example.pizzaappforcgi.navigation.BottomBarScreen.PizzaScreen
 import com.example.pizzaappforcgi.navigation.BottomBarScreen.WelcomeScreen
 import com.example.pizzaappforcgi.navigation.NavigationScreens.PizzaDetailsScreen
-import com.example.pizzaappforcgi.screens.ViewModel
-import com.example.pizzaappforcgi.screens.WelcomeScreen
-import com.example.pizzaappforcgi.screens.pizza.AddPizzaScreen
-import com.example.pizzaappforcgi.screens.pizza.PizzaDetailsScreen
-import com.example.pizzaappforcgi.screens.pizza.PizzaScreen
+import com.example.pizzaappforcgi.presentation.screens.ViewModel
+import com.example.pizzaappforcgi.presentation.screens.WelcomeScreen
+import com.example.pizzaappforcgi.presentation.screens.pizza.AddPizzaScreen
+import com.example.pizzaappforcgi.presentation.screens.pizza.PizzaDetailsScreen
+import com.example.pizzaappforcgi.presentation.screens.pizza.PizzaScreen
 
 @Composable
 fun BottomNavGraph(navController: NavHostController, viewModel: ViewModel) {

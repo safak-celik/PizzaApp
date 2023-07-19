@@ -1,4 +1,4 @@
-package com.example.pizzaappforcgi.screens
+package com.example.pizzaappforcgi.presentation.screens
 
 import com.example.pizzaappforcgi.base.UiIntent
 import com.example.pizzaappforcgi.model.Pizza
