@@ -16,8 +16,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ViewModel @Inject constructor(private val repository: PizzaRepository) :
-    MviViewModel<PizzaUiIntent, PizzaUiState>(PizzaUiState()) {
-    private val _pizzaList = MutableStateFlow<List<Pizza>>(emptyList())
+    MviViewModel<PizzaUiIntent, PizzaUiState>(
+        PizzaUiState(MutableStateFlow(emptyList()))
+    ) {
+    private val _pizzaList = uiState.value.pizzaListState
     val pizzaList = _pizzaList.asStateFlow()
 
     init {
