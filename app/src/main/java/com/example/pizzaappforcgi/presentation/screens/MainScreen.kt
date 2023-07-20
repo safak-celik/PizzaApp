@@ -100,7 +100,7 @@ fun BottomBar(navHostController: NavHostController) {
 fun RowScope.AddItem(
     screen: BottomBarScreen,
     currentDestination: NavDestination?,
-    navHostController: NavHostController,
+    navHostController: NavHostController
 ) {
     val currentBackStackEntry by navHostController.currentBackStackEntryAsState()
     val currentRoute = currentBackStackEntry?.destination?.route

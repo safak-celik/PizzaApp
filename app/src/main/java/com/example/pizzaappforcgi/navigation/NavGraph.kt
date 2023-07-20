@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.pizzaappforcgi.navigation.BottomBarScreen.PizzaScreen
 import com.example.pizzaappforcgi.navigation.BottomBarScreen.WelcomeScreen
+import com.example.pizzaappforcgi.navigation.NavigationScreens.AddPizzaScreen
 import com.example.pizzaappforcgi.navigation.NavigationScreens.PizzaDetailsScreen
 import com.example.pizzaappforcgi.presentation.screens.ViewModel
 import com.example.pizzaappforcgi.presentation.screens.WelcomeScreen
@@ -29,7 +30,7 @@ fun BottomNavGraph(navController: NavHostController, viewModel: ViewModel) {
             )
         }
 
-        composable(route = NavigationScreens.AddPizzaScreen.route) {
+        composable(route = AddPizzaScreen.route) {
             AddPizzaScreen(navController = navController, viewModel = viewModel)
         }
         composable(
