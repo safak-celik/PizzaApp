@@ -30,10 +30,6 @@ abstract class MviViewModel<T : UiIntent, U : UiState>(initialState: U) : ViewMo
         viewModelScope.launch { _uiIntent.replayCache.lastOrNull()?.let { _uiIntent.emit(it) } }
     }
 
-    protected fun publishState(transformation: U.() -> U) {
-        _uiState.value = transformation(_uiState.value)
-    }
-
     private fun startCollectingUiIntents() {
         viewModelScope.launch { _uiIntent.collect { onUiIntent(it) } }
     }

@@ -52,7 +52,7 @@ fun MainScreen(
                     WelcomeScreen.route -> stringResource(id = R.string.app_bar_title)
                     PizzaScreen.route -> stringResource(id = R.string.app_bar_title_pizza)
                     AddPizzaScreen.route -> stringResource(id = R.string.app_bar_add_pizza_title)
-                    PizzaDetailsScreen.route -> stringResource(id = R.string.app_bar_pizza_details_title)
+                    PizzaDetailsScreen.route + "/{id}"  -> stringResource(id = R.string.app_bar_pizza_details_title)
                     else -> stringResource(id = R.string.app_bar_title)
                 },
                 onAddButtonClick = { navController.navigate(AddPizzaScreen.route) },

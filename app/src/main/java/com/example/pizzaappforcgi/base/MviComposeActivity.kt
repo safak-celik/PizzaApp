@@ -7,5 +7,3 @@ abstract class MviComposeActivity<VM : MviViewModel<out UiIntent, out UiState>> 
 
     protected abstract val viewModel: VM
 }
-
-
