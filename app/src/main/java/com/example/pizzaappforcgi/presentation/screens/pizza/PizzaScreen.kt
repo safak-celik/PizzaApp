@@ -6,16 +6,17 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.pizzaappforcgi.components.PizzaRow
-import com.example.pizzaappforcgi.presentation.screens.PizzaUiIntent.DeletePizza
-import com.example.pizzaappforcgi.presentation.screens.ViewModel
+import com.example.pizzaappforcgi.presentation.screens.pizza.PizzaUiIntent.DeletePizza
 import com.example.pizzaappforcgi.ui.theme.CgiDimens
 
 @Composable
 fun PizzaScreen(
-    viewModel: ViewModel,
     onDetailsClick: (Int) -> Unit
 ) {
+
+    val viewModel = hiltViewModel<PizzaViewModel>()
     val pizzaList = viewModel.pizzaList.collectAsState().value
 
     LazyColumn(Modifier.padding(CgiDimens.spacings.spacingXS)) {

@@ -1,10 +1,9 @@
-package com.example.pizzaappforcgi.presentation.screens
+package com.example.pizzaappforcgi.presentation.screens.pizza
 
 import androidx.lifecycle.viewModelScope
 import com.example.pizzaappforcgi.base.MviViewModel
 import com.example.pizzaappforcgi.model.Pizza
-import com.example.pizzaappforcgi.presentation.screens.PizzaUiIntent.AddPizza
-import com.example.pizzaappforcgi.presentation.screens.PizzaUiIntent.DeletePizza
+import com.example.pizzaappforcgi.presentation.screens.pizza.PizzaUiIntent.DeletePizza
 import com.example.pizzaappforcgi.repository.PizzaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ViewModel @Inject constructor(private val repository: PizzaRepository) :
+class PizzaViewModel @Inject constructor(private val repository: PizzaRepository) :
     MviViewModel<PizzaUiIntent, PizzaUiState>(
         PizzaUiState(MutableStateFlow(emptyList()))
     ) {
@@ -33,12 +32,9 @@ class ViewModel @Inject constructor(private val repository: PizzaRepository) :
     override fun onUiIntent(intent: PizzaUiIntent) {
         when (intent) {
             is DeletePizza -> deletePizza(pizza = intent.pizza)
-            is AddPizza -> addPizza(pizza = intent.pizza)
         }
         super.onUiIntent(intent)
     }
-
-    private fun addPizza(pizza: Pizza) = viewModelScope.launch { repository.addPizza(pizza) }
 
     private fun deletePizza(pizza: Pizza) = viewModelScope.launch { repository.deletePizza(pizza) }
 

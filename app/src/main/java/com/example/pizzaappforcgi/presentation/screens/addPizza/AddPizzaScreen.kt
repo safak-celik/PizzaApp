@@ -1,4 +1,4 @@
-package com.example.pizzaappforcgi.presentation.screens.pizza
+package com.example.pizzaappforcgi.presentation.screens.addPizza
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,21 +15,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.pizzaappforcgi.components.InputTextField
 import com.example.pizzaappforcgi.model.Pizza
-import com.example.pizzaappforcgi.presentation.screens.PizzaUiIntent.AddPizza
-import com.example.pizzaappforcgi.presentation.screens.ViewModel
+import com.example.pizzaappforcgi.presentation.screens.addPizza.AddPizzaUiIntent.AddPizza
 import com.example.pizzaappforcgi.ui.theme.CgiDimens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddPizzaScreen(
-    navController: NavController,
-    viewModel: ViewModel
+    navController: NavController
 ) {
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
+
+    val addPizzaViewModel = hiltViewModel<AddPizzaViewModel>()
 
     Scaffold(modifier = Modifier.fillMaxSize(),
         content = { paddingValues ->
@@ -53,7 +54,7 @@ fun AddPizzaScreen(
                         onTextChange = { description = it })
                     Button(
                         onClick = {
-                            viewModel.sendIntent(
+                            addPizzaViewModel.sendIntent(
                                 AddPizza(Pizza(title = title, description = description))
                             )
                             navController.popBackStack()

@@ -1,4 +1,4 @@
-package com.example.pizzaappforcgi.presentation.screens.pizza
+package com.example.pizzaappforcgi.presentation.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -15,11 +15,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.sp
 import com.example.pizzaappforcgi.R
-import com.example.pizzaappforcgi.presentation.screens.ViewModel
+import com.example.pizzaappforcgi.presentation.screens.pizza.PizzaViewModel
 import com.example.pizzaappforcgi.ui.theme.CgiDimens
 
 @Composable
-fun PizzaDetailsScreen(id: Int, viewModel: ViewModel) {
+fun PizzaDetailsScreen(id: Int, viewModel: PizzaViewModel) {
 
     val pizzaDetails = viewModel.showDetails(id)
 

@@ -30,13 +30,13 @@ import com.example.pizzaappforcgi.navigation.BottomBarScreen.WelcomeScreen
 import com.example.pizzaappforcgi.navigation.BottomNavGraph
 import com.example.pizzaappforcgi.navigation.NavigationScreens.AddPizzaScreen
 import com.example.pizzaappforcgi.navigation.NavigationScreens.PizzaDetailsScreen
+import com.example.pizzaappforcgi.presentation.screens.pizza.PizzaUiState
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
-    state: PizzaUiState = PizzaUiState(),
-    viewModel: ViewModel
+    state: PizzaUiState = PizzaUiState()
 ) {
     val navController = rememberNavController()
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
@@ -69,7 +69,7 @@ fun MainScreen(
                     bottom = paddings.calculateBottomPadding()
                 )
         ) {
-            BottomNavGraph(navController = navController, viewModel = viewModel)
+            BottomNavGraph(navController = navController)
         }
     }
 }

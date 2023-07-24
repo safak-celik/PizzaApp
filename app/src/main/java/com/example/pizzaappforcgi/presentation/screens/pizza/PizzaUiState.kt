@@ -1,4 +1,4 @@
-package com.example.pizzaappforcgi.presentation.screens
+package com.example.pizzaappforcgi.presentation.screens.pizza
 
 import com.example.pizzaappforcgi.base.UiState
 import com.example.pizzaappforcgi.model.Pizza
