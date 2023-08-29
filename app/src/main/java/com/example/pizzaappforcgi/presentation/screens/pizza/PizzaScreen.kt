@@ -4,9 +4,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.pizzaappforcgi.components.PizzaRow
 import com.example.pizzaappforcgi.presentation.screens.pizza.PizzaUiIntent.DeletePizza
 import com.example.pizzaappforcgi.ui.theme.CgiDimens
@@ -17,10 +18,10 @@ fun PizzaScreen(
 ) {
 
     val viewModel = hiltViewModel<PizzaViewModel>()
-    val pizzaList = viewModel.pizzaList.collectAsState().value
+    val uiState by viewModel.pizzaList.collectAsStateWithLifecycle()
 
     LazyColumn(Modifier.padding(CgiDimens.spacings.spacingXS)) {
-        items(items = pizzaList) { pizza ->
+        items(items = uiState) { pizza ->
             PizzaRow(
                 pizza = pizza,
                 onItemClicked = { onDetailsClick(pizza.id) },
