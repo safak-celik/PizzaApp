@@ -22,7 +22,7 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun PizzaAppForCGITheme(
-content: @Composable () -> Unit
+    content: @Composable () -> Unit
 ) {
     MaterialTheme(
         colorScheme = LightColorScheme,
